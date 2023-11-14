@@ -29,7 +29,7 @@ func main() {
 }
 
 func init() {
-	configuration, err := config.Configurations(".env")
+	configuration, err := config.Configurations()
 	Config = &configuration
 	if err != nil {
 		panic("error loading configurations")

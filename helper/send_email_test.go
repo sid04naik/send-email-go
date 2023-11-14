@@ -2,41 +2,21 @@ package helper
 
 import (
 	"fmt"
+	"os"
 	"reflect"
+	"strconv"
 	"testing"
 
+	"github.com/joho/godotenv"
 	"github.com/sid04naik/send-email-go/config"
 )
 
-var Config *config.Config
-
-// func Test_sendEmail(t *testing.T) {
-// 	configurations, err := config.Configurations()
-// 	if err != nil {
-// 		t.Error("fail to get configurations")
-// 	}
-
-// 	eh := &EmailHelper{
-// 		Config: &configurations,
-// 	}
-
-// }
-
-// func Test_getAuth(t *testing.T) {
-// 	configurations, err := config.Configurations()
-// 	if err != nil {
-// 		t.Error("fail to get configurations")
-// 	}
-
-// 	eh := &EmailHelper{
-// 		Config: &configurations,
-// 	}
-// }
+var Config = config.Config{}
 
 func TestGetAddress(t *testing.T) {
 	loadConfig()
 	eh := &EmailHelper{
-		Config: Config,
+		Config: &Config,
 	}
 	expected := fmt.Sprintf("%s:%d", eh.Config.EmailConfig.HOST, eh.Config.EmailConfig.PORT)
 	result := eh.getAddress()
@@ -68,9 +48,12 @@ func loadConfig() {
 	// f, _ := os.Getwd()
 	// rootPath := filepath.Dir(f)
 	// envPath := filepath.Join(rootPath, ".env")
-	configurations, err := config.Configurations(".env")
+	err := godotenv.Load(".env")
 	if err != nil {
-		fmt.Println("fail to get configurations", err)
+		fmt.Println("fail to load env", err)
 	}
-	Config = &configurations
+	Config.EmailConfig.HOST = os.Getenv("EMAIL_HOST")
+	Config.EmailConfig.PORT, _ = strconv.Atoi(os.Getenv("EMAIL_PORT"))
+	Config.EmailConfig.AUTH.USER = os.Getenv("EMAIL_USERNAME")
+	Config.EmailConfig.AUTH.PASSWORD = os.Getenv("EMAIL_PASSWORD")
 }
