@@ -8,16 +8,13 @@ import (
 	"github.com/sid04naik/send-email-go/config"
 )
 
-
 type EmailHelper struct {
 	Config *config.Config
-
 }
 
 func (h *EmailHelper) SendEmail(fromEmail string, toEmail []string, subject, message string, signal chan struct{}) {
 	messageBody := getMessageBody(subject, message, toEmail)
-	// Set up authentication information.
- 	smtp.SendMail(h.getAddress(),h.getAuth(), fromEmail, toEmail, messageBody)
+	smtp.SendMail(h.getAddress(), h.getAuth(), fromEmail, toEmail, messageBody)
 	close(signal)
 }
 
@@ -31,10 +28,10 @@ func (h *EmailHelper) getAddress() string {
 }
 
 func getMessageBody(subject, message string, to []string) []byte {
-	lineBreak := "\r\n";
-	toEmail := fmt.Sprintf("To:%s%s",strings.Join(to, ","), lineBreak)   
+	lineBreak := "\r\n"
+	toEmail := fmt.Sprintf("To:%s%s", strings.Join(to, ","), lineBreak)
 	subject = fmt.Sprintf("Subject: %s%s", subject, lineBreak)
-	messageBody := fmt.Sprintf("%s%s%s", toEmail, subject, message)	
+	messageBody := fmt.Sprintf("%s%s%s", toEmail, subject, message)
 	return []byte(messageBody)
 
 }

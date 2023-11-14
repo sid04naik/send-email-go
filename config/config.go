@@ -11,17 +11,16 @@ type Config struct {
 
 type EmailConfig struct {
 	HOST string `envconfig:"EMAIL_HOST"`
-	PORT int `envconfig:"EMAIL_PORT" default:"25"`
+	PORT int    `envconfig:"EMAIL_PORT" default:"25"`
 	AUTH struct {
-		USER string `envconfig:"EMAIL_USERNAME"`
+		USER     string `envconfig:"EMAIL_USERNAME"`
 		PASSWORD string `envconfig:"EMAIL_PASSWORD"`
 	}
 }
 
-
-func Configurations() (Config, error) {
+func Configurations(envPath string) (Config, error) {
 	cnf := Config{}
-	err := godotenv.Load(".env")
+	err := godotenv.Load(envPath)
 	if err != nil {
 		return cnf, err
 	}
