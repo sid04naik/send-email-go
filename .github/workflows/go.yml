@@ -31,6 +31,11 @@ jobs:
         run: go mod download
 
       - name: Build
+        env:
+          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: sh run.sh
 
       - name: Test
@@ -39,7 +44,9 @@ jobs:
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        run: go test -v ./...
+        run: |
+          cd ./
+          go test -v ./...
 
       - name: Linting
         run: |
