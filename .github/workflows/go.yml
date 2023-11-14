@@ -47,9 +47,3 @@ jobs:
         run: |
           cd ./
           go test -v ./...
-
-      - name: Linting
-        run: |
-          go get -u golang.org/x/lint/golint
-          export PATH=$PATH:$GOPATH/bin
-          golint ./...
