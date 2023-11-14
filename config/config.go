@@ -6,7 +6,7 @@ import (
 )
 
 type Config struct {
-	EmailConfig *EmailConfig
+	EmailConfig EmailConfig
 }
 
 type EmailConfig struct {
@@ -18,9 +18,9 @@ type EmailConfig struct {
 	}
 }
 
-func Configurations(envPath string) (Config, error) {
+func Configurations() (Config, error) {
 	cnf := Config{}
-	err := godotenv.Load(envPath)
+	err := godotenv.Load(".env")
 	if err != nil {
 		return cnf, err
 	}
