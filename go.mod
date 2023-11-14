@@ -1,4 +1,4 @@
-module send-email
+module github.com/sid04naik/send-email-go
 
 go 1.21.4
 

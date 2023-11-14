@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"send-email/config"
-	"send-email/helper"
+
+	"github.com/sid04naik/send-email-go/config"
+	"github.com/sid04naik/send-email-go/helper"
 )
 
 var Config *config.Config 

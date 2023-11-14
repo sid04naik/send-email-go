@@ -3,13 +3,15 @@ package helper
 import (
 	"fmt"
 	"net/smtp"
-	"send-email/config"
 	"strings"
+
+	"github.com/sid04naik/send-email-go/config"
 )
 
 
 type EmailHelper struct {
 	Config *config.Config
+
 }
 
 func (h *EmailHelper) SendEmail(fromEmail string, toEmail []string, subject, message string, signal chan struct{}) {
@@ -34,4 +36,5 @@ func getMessageBody(subject, message string, to []string) []byte {
 	subject = fmt.Sprintf("Subject: %s%s", subject, lineBreak)
 	messageBody := fmt.Sprintf("%s%s%s", toEmail, subject, message)	
 	return []byte(messageBody)
+
 }
