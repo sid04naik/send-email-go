@@ -2,8 +2,6 @@ package helper
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -67,10 +65,10 @@ func Test_getMessageBody(t *testing.T) {
 }
 
 func loadConfig() {
-	f, _ := os.Getwd()
-	rootPath := filepath.Dir(f)
-	envPath := filepath.Join(rootPath, ".env")
-	configurations, err := config.Configurations(envPath)
+	// f, _ := os.Getwd()
+	// rootPath := filepath.Dir(f)
+	// envPath := filepath.Join(rootPath, ".env")
+	configurations, err := config.Configurations(".env")
 	if err != nil {
 		fmt.Println("fail to get configurations", err)
 	}
