@@ -3,6 +3,7 @@ package helper
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"testing"
@@ -45,10 +46,10 @@ func Test_getMessageBody(t *testing.T) {
 }
 
 func loadConfig() {
-	// f, _ := os.Getwd()
-	// rootPath := filepath.Dir(f)
-	// envPath := filepath.Join(rootPath, ".env")
-	err := godotenv.Load(".env")
+	f, _ := os.Getwd()
+	rootPath := filepath.Dir(f)
+	envPath := filepath.Join(rootPath, ".env")
+	err := godotenv.Load(envPath)
 	if err != nil {
 		fmt.Println("fail to load env", err)
 	}
