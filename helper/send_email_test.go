@@ -28,7 +28,7 @@ func TestGetAddress(t *testing.T) {
 	t.Log("failed to return the expected address")
 }
 
-func Test_getMessageBody(t *testing.T) {
+func TestGetMessageBody(t *testing.T) {
 	var inputParams = map[string]string{
 		"subject": "test subject",
 		"body":    "test body",
