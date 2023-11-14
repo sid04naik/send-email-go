@@ -25,4 +25,4 @@ jobs:
       run: sh run.sh
 
     - name: Test
-      run: echo "testing completed"
+      run: go test -v ./...
