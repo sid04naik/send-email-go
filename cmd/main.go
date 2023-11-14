@@ -7,12 +7,12 @@ import (
 	"github.com/sid04naik/send-email-go/helper"
 )
 
-var Config *config.Config 
+var Config *config.Config
 
 func main() {
 	emailConfig := Config.EmailConfig
 	toEmailAddress := []string{
-		"gotest@mailinator.com",
+		"gotester@mailinator.com",
 	}
 	var message string = "This is test email"
 	var subject string = "This is email Subject"
@@ -30,7 +30,7 @@ func main() {
 }
 
 func init() {
-	
+
 	configuration, err := config.Configurations()
 	Config = &configuration
 	if err != nil {
