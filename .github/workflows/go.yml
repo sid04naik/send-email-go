@@ -36,7 +36,7 @@ jobs:
           EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
           EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
-        run: sh run.sh
+        run: make build
 
       - name: Test
         env:
@@ -46,4 +46,4 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
           cd ./
-          go test -v ./...
+          make test

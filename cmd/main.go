@@ -25,8 +25,10 @@ func main() {
 	}
 	fmt.Println("Send Email Initiated")
 	go emailHelper.SendEmail(fromEmail, toEmailAddress, subject, message, signal)
-	<-signal
-	fmt.Println("Email Send Successfully")
+
+	if _, isOpen := <-signal; !isOpen {
+		fmt.Println("Email Send Successfully")
+	}
 }
 
 func init() {
