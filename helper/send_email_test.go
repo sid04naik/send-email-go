@@ -28,6 +28,18 @@ func TestGetAddress(t *testing.T) {
 	t.Log("failed to return the expected address")
 }
 
+func TestGetAuth(t *testing.T) {
+	loadConfig()
+	eh := &EmailHelper{
+		Config: &Config,
+	}
+
+	auth := eh.getAuth()
+	if auth != nil {
+		t.Logf("auth received")
+	}
+}
+
 func TestGetMessageBody(t *testing.T) {
 	var inputParams = map[string]string{
 		"subject": "test subject",
