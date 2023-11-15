@@ -14,7 +14,7 @@ import (
 
 var Config = config.Config{}
 
-func TestGetAddress(t *testing.T) {
+func Test_GetAddress(t *testing.T) {
 	loadConfig()
 	eh := &EmailHelper{
 		Config: &Config,
@@ -28,7 +28,7 @@ func TestGetAddress(t *testing.T) {
 	t.Log("failed to return the expected address")
 }
 
-func TestGetMessageBody(t *testing.T) {
+func Test_GetMessageBody(t *testing.T) {
 	var inputParams = map[string]string{
 		"subject": "test subject",
 		"body":    "test body",
