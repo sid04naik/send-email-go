@@ -14,7 +14,10 @@ type EmailHelper struct {
 
 func (h *EmailHelper) SendEmail(fromEmail string, toEmail []string, subject, message string, signal chan struct{}) {
 	messageBody := getMessageBody(subject, message, toEmail)
-	smtp.SendMail(h.getAddress(), h.getAuth(), fromEmail, toEmail, messageBody)
+	err := smtp.SendMail(h.getAddress(), h.getAuth(), fromEmail, toEmail, messageBody)
+	if err != nil {
+		fmt.Println(err)
+	}
 	close(signal)
 }
 
